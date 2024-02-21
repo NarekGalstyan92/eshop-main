@@ -75,12 +75,13 @@
                         <a class="gi-help" href="track-order.html">Track Order?</a>
                         <!-- Language Start -->
                         <div class="header-top-lan-curr header-top-lan dropdown">
-                            <button class="dropdown-toggle" data-bs-toggle="dropdown">English
+                            <button class="dropdown-toggle" data-bs-toggle="dropdown">Lang
                                 <i class="fi-rr-angle-small-down" aria-hidden="true"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li class="active"><a class="dropdown-item" href="register.html#">English</a></li>
-                                <li><a class="dropdown-item" href="register.html#">Italiano</a></li>
+                                <li class="active"><a class="dropdown-item" href="?lang=en">English</a></li>
+                                <li><a class="dropdown-item" href="?lang=hy">Հայերեն</a></li>
+                                <li><a class="dropdown-item" href="?lang=ru">Русский</a></li>
                             </ul>
                         </div>
                         <!-- Language End -->
@@ -323,7 +324,7 @@
 <section class="gi-register padding-tb-40">
     <div class="container">
         <div class="section-title-2">
-            <h2 class="gi-title">Register<span></span></h2>
+            <h2 class="gi-title" th:text="#{register.register}">Register<span></span></h2>
             <p style="color: red" th:text="${msg}"></p>
         </div>
         <div class="row">
@@ -332,11 +333,11 @@
                     <div class="gi-register-form">
                         <form action="/user/register" method="post">
                                 <span class="gi-register-wrap gi-register-half">
-                                    <label>First Name*</label>
+                                    <label th:text="#{register.first.name}">First Name*</label>
                                     <input type="text" name="name" placeholder="Enter your first name" required>
                                 </span>
                             <span class="gi-register-wrap gi-register-half">
-                                    <label>Surname*</label>
+                                    <label th:text="#{register.last.name}">Surname*</label>
                                     <input type="text" name="surname" placeholder="Enter your last name" required>
                                 </span>
                             <span class="gi-register-wrap gi-register-half">
