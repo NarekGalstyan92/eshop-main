@@ -41,7 +41,7 @@ public class UserController {
         if (byEmail == null) {
             user.setUserType(UserType.USER);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userService.save(user);
+            userService.register(user);
             log.info("User with {} email registered successfully", user.getEmail());
             return "redirect:/user/register?msg=User Registered";
         } else {
@@ -68,5 +68,21 @@ public class UserController {
         } else {
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/user/verify")
+    public String verifyUser(@RequestParam("token") String token) {
+        User byToken = userService.findByToken(token);
+        if (byToken == null) {
+            return "redirect:/";
+        }
+        if (byToken.isActive()) {
+            log.error("user {} is already active! ", byToken.getEmail());
+        }
+        byToken.setActive(true);
+        byToken.setToken(null);
+        userService.save(byToken);
+        log.info("User {} verified successfully", byToken.getEmail());
+        return "redirect:/";
     }
 }

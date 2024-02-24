@@ -19,7 +19,7 @@ public class ProductPictureServiceImpl implements ProductPictureService {
 
     private final ProductPictureRepository productPictureRepository;
 
-    @Value("${picture.upload.directory}")
+    @Value("${eshop.picture.upload.directory}")
     private String uploadDirectory;
 
     @Override

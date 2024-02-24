@@ -23,8 +23,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findAll() {
-        List<Category> all = categoryRepository.findAll();
-        log.info("find all users, users list size {}", all.size());
-        return all;
+        return categoryRepository.findAll();
     }
 }

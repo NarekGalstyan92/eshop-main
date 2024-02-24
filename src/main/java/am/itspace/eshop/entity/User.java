@@ -20,6 +20,10 @@ public class User {
 
     private String password;
 
+    private boolean active;
+
+    private String token;
+
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
