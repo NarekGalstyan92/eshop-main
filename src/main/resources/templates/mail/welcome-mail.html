@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+
+<body>
+<div style="height: auto; width: auto; background-color: #4994eb; color: white">
+    <h2>
+        Welcome <span th:text="${user.name + ' ' + user.surname}" > </span> <br>
+    </h2>
+
+    Welcome to our website. <br>
+    <p>To activate your profile please open this <a th:href="@{${serverUrl}+'/user/verify'(token=${user.token})}"> link </a>  </p>
+</div>
+
+</body>
+</html>

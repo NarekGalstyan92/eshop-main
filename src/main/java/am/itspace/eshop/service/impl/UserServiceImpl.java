@@ -4,6 +4,7 @@ import am.itspace.eshop.entity.User;
 import am.itspace.eshop.repository.UserRepository;
 import am.itspace.eshop.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,14 +17,20 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final SendMailService sendMailService;
 
+    @Value("${url.verify}")
+    private String urlVerify;
+
     @Override
     public User register(User user) {
         String activationToken = UUID.randomUUID().toString();
         user.setActive(false);
         user.setToken(activationToken);
         User saved = userRepository.save(user);
-        String verifyUrl = "http://localhost:8080/user/verify?token=" + activationToken;
-        sendMailService.send(user.getEmail(), "Congrats on registering 🎉", String.format("Welcome %s . You have successfully registered. " + "Please open %s to activate your account!", user.getName(), verifyUrl));
+//        String verifyUrl = urlVerify + activationToken;
+//        sendMailService.send(user.getEmail(), "Congrats on registering 🎉",
+//                                                        String.format("Welcome %s . You have successfully registered. " +
+//                                                        "Please open %s to activate your account!", user.getName(), verifyUrl));
+        sendMailService.sendWelcomeMail(user);
         return saved;
     }
 
